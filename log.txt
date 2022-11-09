@@ -1,0 +1,24 @@
+лист. 09, 2022 1:55:12 ДП DAO.DBManager <init>
+INFO: getting connection with database
+лист. 09, 2022 1:55:12 ДП Controller.Controller start
+INFO: Starting app
+лист. 09, 2022 1:55:12 ДП Controller.Controller showMenu
+INFO: Showing menu
+лист. 09, 2022 1:55:19 ДП DAO.DBManager selectCoffee
+INFO: selecting coffee
+лист. 09, 2022 1:55:19 ДП View.View showCoffee
+INFO: showing coffee
+лист. 09, 2022 1:55:19 ДП Controller.Controller showMenu
+INFO: Showing menu
+лист. 09, 2022 1:55:32 ДП Controller.SafeScan safeScanInt
+SEVERE: Was input incorrect integer
+java.util.InputMismatchException
+	at java.base/java.util.Scanner.throwFor(Scanner.java:943)
+	at java.base/java.util.Scanner.next(Scanner.java:1598)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2263)
+	at java.base/java.util.Scanner.nextInt(Scanner.java:2217)
+	at Controller.SafeScan.safeScanInt(SafeScan.java:42)
+	at Controller.SafeScan.safeScanIntInTheRange(SafeScan.java:55)
+	at Controller.Controller.start(Controller.java:42)
+	at Controller.Controller.main(Controller.java:60)
+
