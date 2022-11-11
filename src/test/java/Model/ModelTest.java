@@ -152,11 +152,4 @@ class ModelTest {
         assertEquals(coffeeIntegerMap,model.showTimeToRunOutOfCoffee());
     }
 
-
-    static Stream<Arguments> testCases()
-    {
-        return Stream.of(
-                arguments(null,"1"),
-                arguments(coffeeId3,"2"));
-    }
 }

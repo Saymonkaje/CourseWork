@@ -30,7 +30,7 @@ public class SafeScan {
         try {
             choose = scanner.nextInt();
         } catch (InputMismatchException e) {
-            MyLogger.getLogger().log(Level.SEVERE,"Was input incorrect integer",e);
+            MyLogger.getLogger().error("Was input incorrect integer",e);
             System.out.println("Ви вчинили неправильно, бо ввели букви замість чисел, подумайте над своїми діями");
             System.exit(1);
         }
@@ -42,7 +42,7 @@ public class SafeScan {
             choose = scanner.nextInt();
             scanner.nextLine();
         } catch (InputMismatchException e) {
-            MyLogger.getLogger().log(Level.SEVERE,"Was input incorrect integer",e);
+            MyLogger.getLogger().error("Was input incorrect integer",e);
             System.out.println("Ви вчинили неправильно, бо ввели букви замість чисел, подумайте над своїми діями");
             System.exit(1);
         }
@@ -63,7 +63,7 @@ public class SafeScan {
             choose = scanner.nextDouble();
             scanner.nextLine();
         } catch (InputMismatchException e) {
-            MyLogger.getLogger().log(Level.SEVERE,"Was input incorrect double",e);
+            MyLogger.getLogger().error("Was input incorrect double",e);
             System.out.println("Ви вчинили неправильно, бо ввели букви замість чисел, подумайте над своїми діями");
             System.exit(1);
         }

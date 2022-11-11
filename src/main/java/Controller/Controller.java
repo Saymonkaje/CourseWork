@@ -5,13 +5,15 @@ import Model.Model;
 import commands.*;
 import commands.searching.SearchCommand;
 import commands.showing.ShowCoffeeCommand;
+
 import logger.MyLogger;
+
 import java.util.ArrayList;
 import java.util.List;
+
 import java.util.logging.Level;
 
-
-public class Controller {
+public class Controller{
     List<Command> commands;
 
     Controller(Model model)
@@ -29,7 +31,8 @@ public class Controller {
 
     public void start()
     {
-        MyLogger.getLogger().log(Level.INFO,"Starting app");
+
+        MyLogger.getLogger().info("Starting app");
         int choose;
         while (true)
         {
@@ -39,7 +42,8 @@ public class Controller {
                 break;
             commands.get(choose-1).execute();
         }
-        MyLogger.getLogger().log(Level.INFO,"Ending app");
+
+        MyLogger.getLogger().info("Ending app");
     }
 
     private void showMenu()
@@ -47,9 +51,9 @@ public class Controller {
         System.out.println();
         for(int i = 0;i<commands.size();i++)
             System.out.println((i+1)+" - " + commands.get(i));
-        MyLogger.getLogger().log(Level.INFO,"Showing menu");
+        MyLogger.getLogger().info("Showing menu");
     }
-    public static void main(String[] args){
+    public static void main(String[] args) {
         Model model1 = new Model(DBManager.getInstance());
         Controller controller = new Controller(model1);
         controller.start();

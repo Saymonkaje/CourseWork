@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" name="CourseWork" packages="">
+    <Appenders>
+        <Console name="STDOUT">
+            <Layout type="PatternLayout" pattern="%m %n" />
+        </Console>
+        <RollingFile name="killMePlease"
+                     fileName="logs/log4j2.log"
+                     filePattern="logs/$${date:yyyy-MM}/app-%d{MM-dd-yyyy}-%i.log.gz">
+            <PatternLayout>
+                <Pattern>%d %p %c{1.} [%t] %m%n</Pattern>
+            </PatternLayout>
+            <Policies>
+                <TimeBasedTriggeringPolicy interval = "1" />
+                <SizeBasedTriggeringPolicy
+                        size="250 MB" />
+            </Policies>
+        </RollingFile>
+        <SMTP name="SMTPAppender"
+                smtpPort="465"
+                smtpHost = "smtp.gmail.com"
+                smtpUsername="dmytro.kostinskyi.kn.2021@lpnu.ua"
+                smtpPassword="Dima7772552003boba"
+                from = "dmytro.kostinskyi.kn.2021@lpnu.ua"
+                to = "dmytro.kostinskyi.kn.2021@lpnu.ua"
+                subject="Error log"
+                smtpProtocol="smtps"
+                bufferSize = "50">
+        </SMTP>
+    </Appenders>
+    <Loggers>
+        <Root level="INFO">
+            <AppenderRef ref="SMTPAppender"/>
+        </Root>
+    </Loggers>
+</Configuration>

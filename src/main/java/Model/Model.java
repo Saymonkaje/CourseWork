@@ -29,7 +29,7 @@ public class Model {
     }
     private Map<Integer,String> getAndShowSortMap ()
     {
-        MyLogger.getLogger().log(Level.INFO,"getting sort map");
+        MyLogger.getLogger().info("getting sort map");
         System.out.println("Оберіть сорт кави (введіть id)");
         Map<Integer, String> map = database.selectSort();
         view.showMap(map,"назва сорту");
@@ -38,7 +38,7 @@ public class Model {
 
     private Map<Integer,String> getAndShowConditionMap ()
     {
-        MyLogger.getLogger().log(Level.INFO,"getting condition map");
+        MyLogger.getLogger().info("getting condition map");
         System.out.println("Оберіть фізичний стан кави (введіть id)");
         Map<Integer, String> map = database.selectCondition();
         view.showMap(map,"фізичний стан");
@@ -46,7 +46,7 @@ public class Model {
     }
     private Coffee checkCoffeeId (List<Coffee> list, int id)
     {
-        MyLogger.getLogger().log(Level.INFO,"coffee id check");
+        MyLogger.getLogger().info("coffee id check");
         for(Coffee entity:list)
         {
          if(entity.getId()==id)
@@ -57,7 +57,7 @@ public class Model {
 
     private boolean checkPackId(List<Pack> list, int id)
     {
-        MyLogger.getLogger().log(Level.INFO,"pack id check");
+        MyLogger.getLogger().info("pack id check");
         for(Pack pack:list)
         {
             if(pack.getId()==id)
@@ -68,7 +68,7 @@ public class Model {
 
     private boolean checkId(Map<Integer,String> map,int id )
     {
-        MyLogger.getLogger().log(Level.INFO,"map id check");
+        MyLogger.getLogger().info("map id check");
         for(Integer key:map.keySet())
         {
             if(key==id)
@@ -97,7 +97,7 @@ public class Model {
 
     private void loadNewCoffee()
     {
-        MyLogger.getLogger().log(Level.INFO,"loading new coffee");
+        MyLogger.getLogger().info("loading new coffee");
         int pack_id = choosePack();
         int sort_id = chooseSort();
         int condition_id = chooseCondition();
@@ -110,7 +110,7 @@ public class Model {
 
     private Coffee inputCoffeeId(List<Coffee> list)
     {
-        MyLogger.getLogger().log(Level.INFO,"input coffee id");
+        MyLogger.getLogger().info("input coffee id");
         int choose = SafeScan.getInstance().safeScanInt();
         Coffee coffee;
         if((coffee=checkCoffeeId(list,choose))==null)
@@ -123,7 +123,7 @@ public class Model {
 
     private String inputSort()
     {
-        MyLogger.getLogger().log(Level.INFO,"input coffee sort");
+        MyLogger.getLogger().info("input coffee sort");
         Map<Integer,String> map = getAndShowSortMap();
         int sort_id;
         sort_id = SafeScan.getInstance().safeScanInt();
@@ -135,12 +135,12 @@ public class Model {
     }
     private String inputCondition()
     {
-        MyLogger.getLogger().log(Level.INFO,"input coffee condition");
+        MyLogger.getLogger().info("input coffee condition");
         Map<Integer,String> map = getAndShowConditionMap();
         int condition_id;
         condition_id = SafeScan.getInstance().safeScanInt();
         if(checkId(map,condition_id)) {
-            MyLogger.getLogger().log(Level.INFO,"was input incorrect id");
+            MyLogger.getLogger().info("was input incorrect id");
             System.out.println("Ви ввели неіснуючий Id, подумайте над своєю поведінкою");
             return null;
         }
@@ -148,7 +148,7 @@ public class Model {
     }
     private int choosePack()
     {
-        MyLogger.getLogger().log(Level.INFO,"choosing pack");
+        MyLogger.getLogger().info("choosing pack");
         System.out.println("Оберіть упаковку, в якій буде кава");
         List<Pack> list = database.selectPack();
         for(Pack pack: list )
@@ -165,7 +165,7 @@ public class Model {
         return pack_id;
     }
     private int chooseSort() {
-        MyLogger.getLogger().log(Level.INFO,"choosing sort");
+        MyLogger.getLogger().info("choosing sort");
         Map<Integer,String> map = getAndShowSortMap();
         System.out.println("Введіть 0, якщо потрібного сорту кави немає в перерахованих");
         int sort_id;
@@ -180,7 +180,7 @@ public class Model {
     }
 
     private int chooseCondition() {
-        MyLogger.getLogger().log(Level.INFO,"choosing condition");
+        MyLogger.getLogger().info("choosing condition");
         System.out.println("Оберіть фізичний стан кави");
         Map<Integer, String> map = database.selectCondition();
         map.entrySet().forEach(x -> System.out.println(x.toString()));
@@ -197,7 +197,7 @@ public class Model {
     }
     public int insertPack()
     {
-        MyLogger.getLogger().log(Level.INFO,"inserting pack");
+        MyLogger.getLogger().info("inserting pack");
         System.out.println("Введіть назву упаковки в якій буде кава");
         String pack_name = SafeScan.getInstance().nextLine();
         System.out.println("Введіть об'єм упаковки");
@@ -207,14 +207,14 @@ public class Model {
 
     public int insertSort()
     {
-        MyLogger.getLogger().log(Level.INFO,"inserting sort");
+        MyLogger.getLogger().info("inserting sort");
         System.out.println("Введіть назву сорту кави");
         String sort = SafeScan.getInstance().nextLine();
         return database.insertSort(sort);
     }
     public int insertCondition()
     {
-        MyLogger.getLogger().log(Level.INFO,"inserting condition");
+        MyLogger.getLogger().info("inserting condition");
         System.out.println("Введіть фізичний стан кави");
         String condition = SafeScan.getInstance().nextLine();
         return database.insertCondition(condition);
@@ -222,7 +222,7 @@ public class Model {
 
     public boolean consumptionCoffee()
     {
-        MyLogger.getLogger().log(Level.INFO,"adding info about coffee consumption");
+        MyLogger.getLogger().info("adding info about coffee consumption");
         System.out.println("Оберіть id кави, яка була витрачена");
         List<Coffee> list = getAndShowCoffee(QueryConstant.selectAllCoffee);
         Coffee coffee = inputCoffeeId(list);
@@ -233,7 +233,7 @@ public class Model {
         double newWeight = coffee.getWeight() - consumedWeight;
         if (newWeight<0)
         {
-            MyLogger.getLogger().log(Level.INFO,"input incorrect consumed weight");
+            MyLogger.getLogger().info("input incorrect consumed weight");
             System.out.println("Ви витратили кави більше ніж було, ви розумієте, що ви накоїли?\n" +
                     "ВІДХИЛЕННЯ ОПЕРАЦІЇ");
             return false;
@@ -251,7 +251,7 @@ public class Model {
 
     public void setNewPrice()
     {
-        MyLogger.getLogger().log(Level.INFO,"setting new price");
+        MyLogger.getLogger().info("setting new price");
         System.out.println("Оберіть id кави, ціну якої ви хочете змінити");
         List<Coffee> list = getAndShowCoffee(QueryConstant.selectAllCoffee);
         Coffee coffee = inputCoffeeId(list);
@@ -277,7 +277,7 @@ public class Model {
 
     public List<Coffee> showAndSortCoffee()
     {
-        MyLogger.getLogger().log(Level.INFO,"showing coffee");
+        MyLogger.getLogger().info("showing coffee");
         System.out.println("Оберіть по чому хочете посортувати");
         System.out.println("""
                 1 - по вазі
@@ -294,7 +294,7 @@ public class Model {
 
     public List<Coffee> searchCoffee()
     {
-        MyLogger.getLogger().log(Level.INFO,"searching coffee");
+        MyLogger.getLogger().info("searching coffee");
         System.out.println("Введіть через пробіл номери потрібних критеріїв пошуку");
         System.out.println("""
                 1 - вага
@@ -337,7 +337,7 @@ public class Model {
 
     private String setConditionComparison()
     {
-        MyLogger.getLogger().log(Level.INFO,"setting condition comparison");
+        MyLogger.getLogger().info("setting condition comparison");
         System.out.println("Фізичний стан кави:");
         String condition = inputCondition();
         while (condition == null)
@@ -348,7 +348,7 @@ public class Model {
     }
     private String setSortComparison()
     {
-        MyLogger.getLogger().log(Level.INFO,"setting sort comparison");
+        MyLogger.getLogger().info("setting sort comparison");
         System.out.println("Сорт кави:");
         String sort = inputSort();
         while (sort == null)
@@ -360,7 +360,7 @@ public class Model {
 
     private String setNumComparison(String criteria)
     {
-        MyLogger.getLogger().log(Level.INFO,"setting number comparison");
+        MyLogger.getLogger().info("setting number comparison");
         System.out.println(criteria+":");
         String symbol = chooseNumComparison();
         System.out.println("Введіть число з яким повірнюється критерій");
@@ -370,7 +370,7 @@ public class Model {
 
     private String  chooseNumComparison()
     {
-        MyLogger.getLogger().log(Level.INFO,"choosing symbol for number comparison");
+        MyLogger.getLogger().info("choosing symbol for number comparison");
         System.out.println("""
                 Оберіть потрібний символ порівняння
                 1 - =
@@ -384,14 +384,14 @@ public class Model {
     }
     public double showTotalPrice()
     {
-        MyLogger.getLogger().log(Level.INFO,"showing total price");
+        MyLogger.getLogger().info("showing total price");
         double totalPrice = database.selectTotalPrice();
         System.out.println(totalPrice);
         return totalPrice;
     }
     public double showTotalWeight()
     {
-        MyLogger.getLogger().log(Level.INFO,"showing total weight");
+        MyLogger.getLogger().info("showing total weight");
         double totalWeight = database.selectTotalWeight();
         System.out.println(totalWeight);
         return totalWeight;
